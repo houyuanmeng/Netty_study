@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group 'com.hegang'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8//编译级别
+targetCompatibility =1.8
+
+repositories {//这里是如果jar包没有的话，我们的取包位置
+    mavenCentral()//maven仓库
+}
+
+tasks.withType(JavaCompile) {
+
+    options.encoding = "UTF-8"
+
+}
+
+//因为junit4.12找不到，故在网上找到下段代码加入
+allprojects {
+    repositories {
+        jcenter { url "http://jcenter.bintray.com/" }
+        google()
+        maven { url 'http://repol.maven.org/maven2' }
+    }
+}
+
+dependencies {
+//    testCompile group: 'junit', name: 'junit', version: '4.12'
+// //描述了项目中的各种依赖testCompile测试编译
+    compile(
+            "io.netty:netty-all:4.1.10.Final"
+    )
+}
+
+
